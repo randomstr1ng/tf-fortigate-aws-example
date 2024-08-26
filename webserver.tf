@@ -25,7 +25,7 @@ resource "aws_instance" "webserver" {
   ami                    = data.aws_ami.ubuntu.id
   key_name               = aws_key_pair.key_pair.key_name
   vpc_security_group_ids = [aws_security_group.allow_all.id]
-  subnet_id              = aws_subnet.privatesubnet.id
+  subnet_id              = aws_subnet.appesubnet1.id
   user_data              = base64encode(templatefile("webserver-bootstrap.txt", {}))
 
   tags = {

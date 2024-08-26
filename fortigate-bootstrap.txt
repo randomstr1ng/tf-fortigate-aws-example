@@ -12,13 +12,38 @@ config system interface
 edit port1
 set alias public-interface
 set mode dhcp
-set allowaccess ping https ssh fgfm
+set allowaccess ping https ssh
+set role wan
 next
 edit port2
 set alias private-interface
 set mode dhcp
-set allowaccess ping https ssh fgfm
+set allowaccess ping fabric
 set defaultgw disable
+set role lan
+set lldp-transmission enable
+set auto-auth-extension-device enable
+next
+end
+config router static
+edit 1
+set device "port1"
+set dynamic-gateway enable
+next
+edit 2
+set dst 10.99.99.128 255.255.255.192
+set gateway 10.99.99.1
+set device "port2"
+next
+edit 3
+set dst 10.99.99.192 255.255.255.192
+set gateway 10.99.99.1
+set device "port2"
+next
+edit 4
+set dst 10.99.99.64 255.255.255.192
+set gateway 10.99.99.1
+set device "port2"
 next
 end
 config firewall policy

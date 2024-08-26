@@ -15,11 +15,19 @@ variable "vpccidr" {
 }
 
 variable "publiccidr" {
-    default = "10.99.99.0/25"
+    default = "10.99.99.0/26"
 }
 
 variable "privatecidr" {
-  default = "10.99.99.128/25"
+  default = "10.99.99.64/26"
+}
+
+variable "appcidr-1" {
+    default = "10.99.99.128/26"
+}
+
+variable "appcidr-2" {
+    default = "10.99.99.192/26"
 }
 
 variable "size" {

@@ -26,6 +26,24 @@ resource "aws_subnet" "privatesubnet" {
   }
 }
 
+resource "aws_subnet" "appesubnet1" {
+  vpc_id            = aws_vpc.fgtvmvpc.id
+  cidr_block        = var.appcidr-1
+  availability_zone = var.aws_az
+  tags = {
+    Name = "tf-fgtvm-app-subnet-1"
+  }
+}
+
+resource "aws_subnet" "appesubnet2" {
+  vpc_id            = aws_vpc.fgtvmvpc.id
+  cidr_block        = var.appcidr-2
+  availability_zone = var.aws_az
+  tags = {
+    Name = "tf-fgtvm-app-subnet-2"
+  }
+}
+
 resource "aws_internet_gateway" "fgtvmigw" {
   vpc_id = aws_vpc.fgtvmvpc.id
   tags = {

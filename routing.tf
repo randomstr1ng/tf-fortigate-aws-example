@@ -28,12 +28,22 @@ resource "aws_route" "internalroute" {
 
 }
 
-resource "aws_route_table_association" "public1associate" {
+resource "aws_route_table_association" "publicassociate" {
   subnet_id      = aws_subnet.publicsubnet.id
   route_table_id = aws_route_table.fgtvmpublicrt.id
 }
 
-resource "aws_route_table_association" "internalassociate" {
+resource "aws_route_table_association" "privateassociate" {
   subnet_id      = aws_subnet.privatesubnet.id
+  route_table_id = aws_route_table.fgtvmprivatert.id
+}
+
+resource "aws_route_table_association" "app1associate" {
+  subnet_id      = aws_subnet.appesubnet1.id
+  route_table_id = aws_route_table.fgtvmprivatert.id
+}
+
+resource "aws_route_table_association" "app2associate" {
+  subnet_id      = aws_subnet.appesubnet2.id
   route_table_id = aws_route_table.fgtvmprivatert.id
 }
